@@ -1,0 +1,50 @@
+﻿@model DBLayer.ComputerSystem
+
+@{
+	string errorMessage = ViewData["ErrorMessage"] as string;
+}
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+	<div class="alert alert-danger" role="alert">
+		@errorMessage
+	</div>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.computer_id)
+
+	<div class="form-group">
+		@Html.Label("Memory")
+		@Html.TextBoxFor(model => model.Memory.totalmemory, new { @class = "form-control", @Value = Model.Memory.totalmemory })
+	</div>
+	<div class="form-group">
+    @Html.Label("Storage Device Capacity")
+    @Html.TextBoxFor(model => model.StorageDevice.capacity, new { @class = "form-control", @Value = Model.StorageDevice.capacity })
+</div>
+<div class="form-group">
+    @Html.Label("Storage Device Type")
+    @Html.TextBoxFor(model => model.StorageDevice.type, new { @class = "form-control", @Value = Model.StorageDevice.type })
+</div>
+<div class="form-group">
+    @Html.Label("Addition USB Configuration")
+    @Html.TextBoxFor(model => model.additional_notes, new { @class = "form-control", @Value = Model.additional_notes })
+</div>
+    <div class="form-group">
+	    @Html.Label("Graphics Model")
+        @Html.TextBoxFor(model => model.GraphicsCard.model, new { @class = "form-control", @Value = Model.GraphicsCard.model })
+    </div>
+    <div class="form-group">
+        @Html.Label("Weight")
+        @Html.TextBoxFor(model => model.weight, new { @class = "form-control", @Value = Model.weight })
+    </div>
+    <div class="form-group">
+        @Html.Label("Power Supply")
+        @Html.TextBoxFor(model => model.power_supply, new { @class = "form-control", @Value = Model.power_supply })
+    </div>
+    <div class="form-group">
+        @Html.Label("Processor Model")
+        @Html.TextBoxFor(model => model.Processor.model, new { @class = "form-control", @Value = Model.Processor.model })
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+}

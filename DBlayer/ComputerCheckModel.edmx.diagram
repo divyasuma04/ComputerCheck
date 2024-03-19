@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f666631667764b23be7660ab07b7dddd" Name="Diagram1">
+        <EntityTypeShape EntityType="ComputerCheckModel.ComputerSystem" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerCheckModel.GraphicsCard" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerCheckModel.Memory" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerCheckModel.Processor" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputerCheckModel.StorageDevice" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <AssociationConnector Association="ComputerCheckModel.FK__ComputerS__graph__688C6DAC" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerCheckModel.FK__ComputerS__memor__6A74B61E" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerCheckModel.FK__ComputerS__proce__698091E5" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputerCheckModel.FK__ComputerS__stora__67984973" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

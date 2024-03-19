@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ComputerCheckModelStoreContainer" CdmEntityContainer="ComputerSystemDBEntities">
+    <EntitySetMapping Name="ComputerSystems">
+      <EntityTypeMapping TypeName="ComputerCheckModel.ComputerSystem">
+        <MappingFragment StoreEntitySet="ComputerSystem">
+          <ScalarProperty Name="computer_id" ColumnName="computer_id" />
+          <ScalarProperty Name="storage_device_id" ColumnName="storage_device_id" />
+          <ScalarProperty Name="graphics_card_id" ColumnName="graphics_card_id" />
+          <ScalarProperty Name="processor_id" ColumnName="processor_id" />
+          <ScalarProperty Name="memory_id" ColumnName="memory_id" />
+          <ScalarProperty Name="weight" ColumnName="weight" />
+          <ScalarProperty Name="power_supply" ColumnName="power_supply" />
+          <ScalarProperty Name="additional_notes" ColumnName="additional_notes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GraphicsCards">
+      <EntityTypeMapping TypeName="ComputerCheckModel.GraphicsCard">
+        <MappingFragment StoreEntitySet="GraphicsCard">
+          <ScalarProperty Name="graphics_card_id" ColumnName="graphics_card_id" />
+          <ScalarProperty Name="model" ColumnName="model" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Memories">
+      <EntityTypeMapping TypeName="ComputerCheckModel.Memory">
+        <MappingFragment StoreEntitySet="Memory">
+          <ScalarProperty Name="memory_id" ColumnName="memory_id" />
+          <ScalarProperty Name="totalmemory" ColumnName="totalmemory" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Processors">
+      <EntityTypeMapping TypeName="ComputerCheckModel.Processor">
+        <MappingFragment StoreEntitySet="Processor">
+          <ScalarProperty Name="processor_id" ColumnName="processor_id" />
+          <ScalarProperty Name="model" ColumnName="model" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StorageDevices">
+      <EntityTypeMapping TypeName="ComputerCheckModel.StorageDevice">
+        <MappingFragment StoreEntitySet="StorageDevice">
+          <ScalarProperty Name="storage_device_id" ColumnName="storage_device_id" />
+          <ScalarProperty Name="capacity" ColumnName="capacity" />
+          <ScalarProperty Name="type" ColumnName="type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

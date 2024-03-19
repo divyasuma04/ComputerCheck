@@ -1,0 +1,323 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ComputerCheckModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ComputerSystem">
+          <Key>
+            <PropertyRef Name="computer_id" />
+          </Key>
+          <Property Name="computer_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="storage_device_id" Type="int" />
+          <Property Name="graphics_card_id" Type="int" />
+          <Property Name="processor_id" Type="int" />
+          <Property Name="memory_id" Type="int" />
+          <Property Name="weight" Type="varchar" MaxLength="50" />
+          <Property Name="power_supply" Type="varchar" MaxLength="50" />
+          <Property Name="additional_notes" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="GraphicsCard">
+          <Key>
+            <PropertyRef Name="graphics_card_id" />
+          </Key>
+          <Property Name="graphics_card_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="model" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Memory">
+          <Key>
+            <PropertyRef Name="memory_id" />
+          </Key>
+          <Property Name="memory_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="totalmemory" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Processor">
+          <Key>
+            <PropertyRef Name="processor_id" />
+          </Key>
+          <Property Name="processor_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="model" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="StorageDevice">
+          <Key>
+            <PropertyRef Name="storage_device_id" />
+          </Key>
+          <Property Name="storage_device_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="capacity" Type="varchar" MaxLength="50" />
+          <Property Name="type" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__ComputerS__graph__688C6DAC">
+          <End Role="GraphicsCard" Type="Self.GraphicsCard" Multiplicity="0..1" />
+          <End Role="ComputerSystem" Type="Self.ComputerSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GraphicsCard">
+              <PropertyRef Name="graphics_card_id" />
+            </Principal>
+            <Dependent Role="ComputerSystem">
+              <PropertyRef Name="graphics_card_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ComputerS__memor__6A74B61E">
+          <End Role="Memory" Type="Self.Memory" Multiplicity="0..1" />
+          <End Role="ComputerSystem" Type="Self.ComputerSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Memory">
+              <PropertyRef Name="memory_id" />
+            </Principal>
+            <Dependent Role="ComputerSystem">
+              <PropertyRef Name="memory_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ComputerS__proce__698091E5">
+          <End Role="Processor" Type="Self.Processor" Multiplicity="0..1" />
+          <End Role="ComputerSystem" Type="Self.ComputerSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Processor">
+              <PropertyRef Name="processor_id" />
+            </Principal>
+            <Dependent Role="ComputerSystem">
+              <PropertyRef Name="processor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ComputerS__stora__67984973">
+          <End Role="StorageDevice" Type="Self.StorageDevice" Multiplicity="0..1" />
+          <End Role="ComputerSystem" Type="Self.ComputerSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StorageDevice">
+              <PropertyRef Name="storage_device_id" />
+            </Principal>
+            <Dependent Role="ComputerSystem">
+              <PropertyRef Name="storage_device_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ComputerCheckModelStoreContainer">
+          <EntitySet Name="ComputerSystem" EntityType="Self.ComputerSystem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GraphicsCard" EntityType="Self.GraphicsCard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Memory" EntityType="Self.Memory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Processor" EntityType="Self.Processor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StorageDevice" EntityType="Self.StorageDevice" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__ComputerS__graph__688C6DAC" Association="Self.FK__ComputerS__graph__688C6DAC">
+            <End Role="GraphicsCard" EntitySet="GraphicsCard" />
+            <End Role="ComputerSystem" EntitySet="ComputerSystem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ComputerS__memor__6A74B61E" Association="Self.FK__ComputerS__memor__6A74B61E">
+            <End Role="Memory" EntitySet="Memory" />
+            <End Role="ComputerSystem" EntitySet="ComputerSystem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ComputerS__proce__698091E5" Association="Self.FK__ComputerS__proce__698091E5">
+            <End Role="Processor" EntitySet="Processor" />
+            <End Role="ComputerSystem" EntitySet="ComputerSystem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ComputerS__stora__67984973" Association="Self.FK__ComputerS__stora__67984973">
+            <End Role="StorageDevice" EntitySet="StorageDevice" />
+            <End Role="ComputerSystem" EntitySet="ComputerSystem" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ComputerCheckModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ComputerSystem">
+          <Key>
+            <PropertyRef Name="computer_id" />
+          </Key>
+          <Property Name="computer_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="storage_device_id" Type="Int32" />
+          <Property Name="graphics_card_id" Type="Int32" />
+          <Property Name="processor_id" Type="Int32" />
+          <Property Name="memory_id" Type="Int32" />
+          <Property Name="weight" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="power_supply" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="additional_notes" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="GraphicsCard" Relationship="Self.FK__ComputerS__graph__688C6DAC" FromRole="ComputerSystem" ToRole="GraphicsCard" />
+          <NavigationProperty Name="Memory" Relationship="Self.FK__ComputerS__memor__6A74B61E" FromRole="ComputerSystem" ToRole="Memory" />
+          <NavigationProperty Name="Processor" Relationship="Self.FK__ComputerS__proce__698091E5" FromRole="ComputerSystem" ToRole="Processor" />
+          <NavigationProperty Name="StorageDevice" Relationship="Self.FK__ComputerS__stora__67984973" FromRole="ComputerSystem" ToRole="StorageDevice" />
+        </EntityType>
+        <EntityType Name="GraphicsCard">
+          <Key>
+            <PropertyRef Name="graphics_card_id" />
+          </Key>
+          <Property Name="graphics_card_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="model" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ComputerSystems" Relationship="Self.FK__ComputerS__graph__688C6DAC" FromRole="GraphicsCard" ToRole="ComputerSystem" />
+        </EntityType>
+        <EntityType Name="Memory">
+          <Key>
+            <PropertyRef Name="memory_id" />
+          </Key>
+          <Property Name="memory_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="totalmemory" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ComputerSystems" Relationship="Self.FK__ComputerS__memor__6A74B61E" FromRole="Memory" ToRole="ComputerSystem" />
+        </EntityType>
+        <EntityType Name="Processor">
+          <Key>
+            <PropertyRef Name="processor_id" />
+          </Key>
+          <Property Name="processor_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="model" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ComputerSystems" Relationship="Self.FK__ComputerS__proce__698091E5" FromRole="Processor" ToRole="ComputerSystem" />
+        </EntityType>
+        <EntityType Name="StorageDevice">
+          <Key>
+            <PropertyRef Name="storage_device_id" />
+          </Key>
+          <Property Name="storage_device_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="capacity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ComputerSystems" Relationship="Self.FK__ComputerS__stora__67984973" FromRole="StorageDevice" ToRole="ComputerSystem" />
+        </EntityType>
+        <Association Name="FK__ComputerS__graph__688C6DAC">
+          <End Role="GraphicsCard" Type="Self.GraphicsCard" Multiplicity="0..1" />
+          <End Role="ComputerSystem" Type="Self.ComputerSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GraphicsCard">
+              <PropertyRef Name="graphics_card_id" />
+            </Principal>
+            <Dependent Role="ComputerSystem">
+              <PropertyRef Name="graphics_card_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ComputerS__memor__6A74B61E">
+          <End Role="Memory" Type="Self.Memory" Multiplicity="0..1" />
+          <End Role="ComputerSystem" Type="Self.ComputerSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Memory">
+              <PropertyRef Name="memory_id" />
+            </Principal>
+            <Dependent Role="ComputerSystem">
+              <PropertyRef Name="memory_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ComputerS__proce__698091E5">
+          <End Role="Processor" Type="Self.Processor" Multiplicity="0..1" />
+          <End Role="ComputerSystem" Type="Self.ComputerSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Processor">
+              <PropertyRef Name="processor_id" />
+            </Principal>
+            <Dependent Role="ComputerSystem">
+              <PropertyRef Name="processor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ComputerS__stora__67984973">
+          <End Role="StorageDevice" Type="Self.StorageDevice" Multiplicity="0..1" />
+          <End Role="ComputerSystem" Type="Self.ComputerSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StorageDevice">
+              <PropertyRef Name="storage_device_id" />
+            </Principal>
+            <Dependent Role="ComputerSystem">
+              <PropertyRef Name="storage_device_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ComputerSystemDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ComputerSystems" EntityType="Self.ComputerSystem" />
+          <EntitySet Name="GraphicsCards" EntityType="Self.GraphicsCard" />
+          <EntitySet Name="Memories" EntityType="Self.Memory" />
+          <EntitySet Name="Processors" EntityType="Self.Processor" />
+          <EntitySet Name="StorageDevices" EntityType="Self.StorageDevice" />
+          <AssociationSet Name="FK__ComputerS__graph__688C6DAC" Association="Self.FK__ComputerS__graph__688C6DAC">
+            <End Role="GraphicsCard" EntitySet="GraphicsCards" />
+            <End Role="ComputerSystem" EntitySet="ComputerSystems" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ComputerS__memor__6A74B61E" Association="Self.FK__ComputerS__memor__6A74B61E">
+            <End Role="Memory" EntitySet="Memories" />
+            <End Role="ComputerSystem" EntitySet="ComputerSystems" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ComputerS__proce__698091E5" Association="Self.FK__ComputerS__proce__698091E5">
+            <End Role="Processor" EntitySet="Processors" />
+            <End Role="ComputerSystem" EntitySet="ComputerSystems" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ComputerS__stora__67984973" Association="Self.FK__ComputerS__stora__67984973">
+            <End Role="StorageDevice" EntitySet="StorageDevices" />
+            <End Role="ComputerSystem" EntitySet="ComputerSystems" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ComputerCheckModelStoreContainer" CdmEntityContainer="ComputerSystemDBEntities">
+          <EntitySetMapping Name="ComputerSystems">
+            <EntityTypeMapping TypeName="ComputerCheckModel.ComputerSystem">
+              <MappingFragment StoreEntitySet="ComputerSystem">
+                <ScalarProperty Name="computer_id" ColumnName="computer_id" />
+                <ScalarProperty Name="storage_device_id" ColumnName="storage_device_id" />
+                <ScalarProperty Name="graphics_card_id" ColumnName="graphics_card_id" />
+                <ScalarProperty Name="processor_id" ColumnName="processor_id" />
+                <ScalarProperty Name="memory_id" ColumnName="memory_id" />
+                <ScalarProperty Name="weight" ColumnName="weight" />
+                <ScalarProperty Name="power_supply" ColumnName="power_supply" />
+                <ScalarProperty Name="additional_notes" ColumnName="additional_notes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GraphicsCards">
+            <EntityTypeMapping TypeName="ComputerCheckModel.GraphicsCard">
+              <MappingFragment StoreEntitySet="GraphicsCard">
+                <ScalarProperty Name="graphics_card_id" ColumnName="graphics_card_id" />
+                <ScalarProperty Name="model" ColumnName="model" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Memories">
+            <EntityTypeMapping TypeName="ComputerCheckModel.Memory">
+              <MappingFragment StoreEntitySet="Memory">
+                <ScalarProperty Name="memory_id" ColumnName="memory_id" />
+                <ScalarProperty Name="totalmemory" ColumnName="totalmemory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Processors">
+            <EntityTypeMapping TypeName="ComputerCheckModel.Processor">
+              <MappingFragment StoreEntitySet="Processor">
+                <ScalarProperty Name="processor_id" ColumnName="processor_id" />
+                <ScalarProperty Name="model" ColumnName="model" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StorageDevices">
+            <EntityTypeMapping TypeName="ComputerCheckModel.StorageDevice">
+              <MappingFragment StoreEntitySet="StorageDevice">
+                <ScalarProperty Name="storage_device_id" ColumnName="storage_device_id" />
+                <ScalarProperty Name="capacity" ColumnName="capacity" />
+                <ScalarProperty Name="type" ColumnName="type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

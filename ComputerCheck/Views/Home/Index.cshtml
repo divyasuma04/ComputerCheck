@@ -1,0 +1,42 @@
+﻿@model IEnumerable<DBLayer.ComputerSystem>
+
+<h2 align="center">Available Computer Configuration</h2>
+<br/>
+
+@using (Html.BeginForm("Search", "Home", FormMethod.Post))
+{
+<p align="center">
+    Search: @Html.TextBox("searchTerm", null, new { @placeholder = "Enter any search criteria" })
+    <input type="submit" value="Search" />
+</p>
+}
+
+<table class="table">
+	<tr>
+		<th>Storage Device ID</th>
+		<th>Capacity</th>
+		<th>Type</th>
+		<th>USB Drive Support</th>
+		<th>Graphics Model</th>
+		<th>Weight</th>
+		<th>Power Supply</th>
+		<th>Processor Model</th>
+		<th>Edit</th>
+	</tr>
+	@foreach (var cSystem in Model)
+	{
+		<tr>
+			<td>@cSystem.computer_id</td>
+			<td>@cSystem.StorageDevice.capacity</td>
+			<td>@cSystem.StorageDevice.type</td>
+			<td>@cSystem.additional_notes</td>
+			<td>@cSystem.GraphicsCard.model</td>
+			<td>@cSystem.weight</td>
+			<td>@cSystem.power_supply</td>
+			<td>@cSystem.Processor.model</td>
+			<td>
+				@Html.ActionLink("Edit", "Edit", new { id = cSystem.computer_id })
+			</td>
+		</tr>
+	}
+</table>
